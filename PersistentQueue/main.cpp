@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <vector>
 #include <queue>
 #include <cstdlib>
@@ -24,6 +25,7 @@ void stress(int all, double pushProbability)
                 cout << "ALARM!!!";
                 exit(0);
             }
+            qToCheck.print();
             int p1 = qTrue.front();
             qTrue.pop();
             int p2 = qToCheck.pop();
@@ -36,6 +38,7 @@ void stress(int all, double pushProbability)
 
 int main()
 {
+    freopen("output.txt", "w", stdout);
     int numTests = 1000;
     for (int i = 0; i < numTests; ++i) {
         cout << i << endl;

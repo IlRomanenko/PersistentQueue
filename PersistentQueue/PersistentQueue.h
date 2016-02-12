@@ -73,6 +73,18 @@ class PersistentQueue : IQueue
         recopy = S.size() != 0;
     }
 
+    void printStack(stack<int> &st)
+    {
+        vector<int> temp;
+        while (st.size() != 0)
+        {
+            temp.push_back(st.top());
+            st.pop();
+        }
+        for_each(temp.begin(), temp.end(), [](int x) { cout << x << ' '; });
+        for_each(temp.rbegin(), temp.rend(), [&st](int x) { st.push(x); });
+    }
+
 public:
     PersistentQueue()
     {
@@ -133,4 +145,32 @@ public:
         return !recopy && R.size() == 0;
     }
 
+
+    void print()
+    {
+        cout << "L = " << endl;
+        printStack(L);
+        cout << endl << endl;
+
+        cout << "L' = " << endl;
+        printStack(L);
+        cout << endl << endl;
+
+        cout << "R = " << endl;
+        printStack(L);
+        cout << endl << endl;
+
+        cout << "S = " << endl;
+        printStack(L);
+        cout << endl << endl;
+
+        cout << "Rc = " << endl;
+        printStack(L);
+        cout << endl << endl;
+
+        cout << "Rc' = " << endl;
+        printStack(L);
+        cout << endl << endl;
+        cout << endl << endl << endl << endl << endl << endl;
+    }
 };
