@@ -18,6 +18,8 @@ void stress(int all, double pushProbability)
     queue<int> qTrue;
     for (int i = 0; i < all; ++i) {
         if (rand() / (double)RAND_MAX <= pushProbability) {
+            /*cout << "push" << endl;
+            qToCheck.print();*/
             add(qToCheck, qTrue, rand());
         } else if (!qTrue.empty()) {
             if (qTrue.empty() ^ qToCheck.empty())
@@ -25,12 +27,14 @@ void stress(int all, double pushProbability)
                 cout << "ALARM!!!";
                 exit(0);
             }
-            qToCheck.print();
+            /*cout << "pop" << endl;
+            qToCheck.print();*/
             int p1 = qTrue.front();
             qTrue.pop();
             int p2 = qToCheck.pop();
             if (p1 != p2) {
                 cout << "err" << endl;
+                exit(0);
             }
         }
     }

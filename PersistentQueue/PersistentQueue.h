@@ -4,6 +4,7 @@
 #include <cstdio>
 #include <vector>
 #include <stack>
+#include <cassert>
 
 using namespace std;
 
@@ -19,6 +20,7 @@ class PersistentQueue : IQueue
         bool recopy = L.size() > R.size();
         if (recopy)
         {
+            assert(R.size() == Rc.size());
             toCopy = R.size();
             copied = false;
             checkNormal();
@@ -98,9 +100,7 @@ public:
         {
             L.push(x);
             if (Rc_.size() > 0)
-            {
                 Rc_.pop();
-            }
             checkRecopy();
         }
         else
@@ -125,14 +125,18 @@ public:
         }
         else
         {
-            int tmp = Rc.top();
-            Rc.pop();
+            int tmp;
             if (toCopy > 0)
-                toCopy = toCopy - 1;
+            {
+                tmp = Rc.top();
+                Rc.pop();
+                toCopy--;
+            }
             else
             {
+                tmp = R.top();
                 R.pop();
-                Rc.pop();
+                Rc_.pop();
             }
             checkNormal();
             return tmp;
@@ -148,28 +152,29 @@ public:
 
     void print()
     {
+        cout << "toCopy = " << toCopy << "  copied = " << copied << "   recopy = " << recopy << endl;
         cout << "L = " << endl;
         printStack(L);
         cout << endl << endl;
 
         cout << "L' = " << endl;
-        printStack(L);
+        printStack(L_);
         cout << endl << endl;
 
         cout << "R = " << endl;
-        printStack(L);
+        printStack(R);
         cout << endl << endl;
 
         cout << "S = " << endl;
-        printStack(L);
+        printStack(S);
         cout << endl << endl;
 
         cout << "Rc = " << endl;
-        printStack(L);
+        printStack(Rc);
         cout << endl << endl;
 
         cout << "Rc' = " << endl;
-        printStack(L);
+        printStack(Rc_);
         cout << endl << endl;
         cout << endl << endl << endl << endl << endl << endl;
     }
