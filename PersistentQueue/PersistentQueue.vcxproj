@@ -115,6 +115,7 @@
   <ItemGroup>
     <ClInclude Include="IQueue.h" />
     <ClInclude Include="PersistentQueue.h" />
+    <ClInclude Include="stress.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

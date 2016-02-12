@@ -88,8 +88,8 @@ public:
             if (Rc_.size() > 0)
             {
                 Rc_.pop();
-                checkRecopy();
             }
+            checkRecopy();
         }
         else
         {
@@ -106,28 +106,27 @@ public:
             int tmp = R.top();
             R.pop();
             Rc.pop();
-            if (Rc.size() > 0)
-            {
-                Rc.pop();
-                checkRecopy();
-                return tmp;
-            }
+            if (Rc_.size() > 0)
+                Rc_.pop();
+            checkRecopy();
+            return tmp;
+        }
+        else
+        {
+            int tmp = Rc.top();
+            Rc.pop();
+            if (toCopy > 0)
+                toCopy = toCopy - 1;
             else
             {
-                int tmp = Rc.top();
+                R.pop();
                 Rc.pop();
-                if (toCopy > 0)
-                    toCopy = toCopy - 1;
-                else
-                {
-                    R.pop();
-                    Rc.pop();
-                    checkNormal();
-                    return tmp;
-                }
             }
+            checkNormal();
+            return tmp;
         }
     }
+
 
     bool empty()
     {
