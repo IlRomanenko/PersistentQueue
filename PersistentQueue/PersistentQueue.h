@@ -76,7 +76,7 @@ class PersistentQueue : IQueue
 public:
     PersistentQueue()
     {
-        copied = recopy = 0;
+        copied = recopy = false;
         toCopy = 0;
     }
 

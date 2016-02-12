@@ -19,6 +19,11 @@ void stress(int all, double pushProbability)
         if (rand() / (double)RAND_MAX <= pushProbability) {
             add(qToCheck, qTrue, rand());
         } else if (!qTrue.empty()) {
+            if (qTrue.empty() ^ qToCheck.empty())
+            {
+                cout << "ALARM!!!";
+                exit(0);
+            }
             int p1 = qTrue.front();
             qTrue.pop();
             int p2 = qToCheck.pop();
