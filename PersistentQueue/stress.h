@@ -27,7 +27,9 @@ int main()
 {
     int numTests = 1000;
     for (int i = 0; i < numTests; ++i) {
-        stress((i + 1) * 10, rand() / (double)RAND_MAX);
+        for (int j = 0; j <= 100; ++j) {
+            stress((i + 1) * 10, j / 100.0);
+        }
     }
     return 0;
 }
