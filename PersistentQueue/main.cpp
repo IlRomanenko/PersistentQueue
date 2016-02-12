@@ -18,7 +18,7 @@ void stress(int all, double pushProbability)
     for (int i = 0; i < all; ++i) {
         if (rand() / (double)RAND_MAX <= pushProbability) {
             add(qToCheck, qTrue, rand());
-        } else {
+        } else if (!qTrue.empty()) {
             int p1 = qTrue.front();
             qTrue.pop();
             int p2 = qToCheck.pop();
@@ -33,6 +33,7 @@ int main()
 {
     int numTests = 1000;
     for (int i = 0; i < numTests; ++i) {
+        cout << i << endl;
         for (int j = 0; j <= 100; ++j) {
             stress((i + 1) * 10, j / 100.0);
         }
